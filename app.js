@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//Mongoose
+//Mongoose setup
 var mongoose = require('mongoose');
 var url = 'mongodb://localhost:27017/t1';
 mongoose.connect(url, function(err){

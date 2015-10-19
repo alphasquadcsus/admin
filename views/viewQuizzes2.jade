@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	h1 Quizzes
+	table(border="1")
+		tr
+			td Quiz
+			td Tour
+			td Questions
+			td Answers
+			td Answer Key	
+		for quiz in quizzes
+			tr
+				td= quiz.name
+				td= quiz.tour
+		
+	a(href='/addQuiz2') Add a Quiz
+  
