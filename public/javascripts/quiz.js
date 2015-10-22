@@ -14,9 +14,9 @@ Quiz = function(quizName, tourID){
 };
 
 //Adds the question and answer key to the object
-Quiz.prototype.addQuestion = function (questionName, answers, key) {
+Quiz.prototype.addQuestion = function (questionName, answers, key, questionCount) {
     this.questions.push(questionName);
-    this.answers.push(answers);
+    this.answers[questionCount] = (answers);  //Array of array of answers with question
     this.answerKeys.push(key);
 };
 

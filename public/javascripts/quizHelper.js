@@ -2,6 +2,7 @@
  * Created by Edgar on 10/14/15.
  */
 var newQuiz;
+var questionCount = 0;
 var space = "&nbsp; &nbsp; &nbsp; &nbsp;";
 $(document).ready(function(){
     //quiz object for creating a new quiz
@@ -65,7 +66,8 @@ $(document).ready(function(){
         arrQuestion[4] = $('#answer5').val();
 
         var answer = $('#answerKey').val();
-        newQuiz.addQuestion(questionName, arrQuestion, answer);
+        newQuiz.addQuestion(questionName, arrQuestion, answer, questionCount);
+		questionCount++; //Increment question number answer array is for
         $('#tempQuestion').remove();
         jQuiz.append("<br><b>" + questionName +":</b><br>");
 		jQuiz.append(space, arrQuestion[0]+"<br>");
@@ -73,6 +75,7 @@ $(document).ready(function(){
 		jQuiz.append(space, arrQuestion[2]+"<br>");
 		jQuiz.append(space, arrQuestion[3]+"<br>");
 		jQuiz.append(space, arrQuestion[4]+"<br>");
+		
         generateQATemplate();
     };
 	
@@ -90,9 +93,10 @@ $(document).ready(function(){
 				answerKeys: JSON.stringify(newQuiz.getAnswerKeys())
 			},
 			success: function(){
-				location.href="/viewQuizzes2"; //redirect 
+				
 			},
 		});
+		window.location.replace('/viewQuizzes2'); //redirect 
 	};
 
 
