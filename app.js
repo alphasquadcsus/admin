@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //Mongoose setup
 var mongoose = require('mongoose');
+//var url = 'mongodb://73.41.74.242:27017/QuizTesting';//Rick's Raspberry Pi
 var url = 'mongodb://localhost:27017/t1';
 mongoose.connect(url, function(err){
 	if(err){

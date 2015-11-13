@@ -90,7 +90,8 @@ $(document).ready(function(){
 		}
 			
         var answer = $('#answerKey').val();
-        newQuiz.addQuestion(questionName, arrQuestion, answer);
+        newQuiz.addQuestion(questionName, arrQuestion, answer, questionCount);
+		questionCount++; //Increment question number answer array is for
         $('#tempQuestion').remove();
 		var $questionDiv = $("<div>", {id: "q"+questionCount});
 		$questionDiv.append("<br><b>" + questionName +":</b>" + space + "<input type='button' id='question"+questionCount+"' value='Edit'><br>");
@@ -224,11 +225,9 @@ $(document).ready(function(){
 				answers: JSON.stringify(newQuiz.getAnswers()),
 				answerKeys: JSON.stringify(newQuiz.getAnswerKeys())
 			},
-			success: function(){
-				
+			success: function(data){
+				window.location = data.redirect; //Redirect to redirect value in res.send
 			},
 		});
-		window.location.replace('/viewQuizzes2'); //redirect 
 	};
-	}
 });

@@ -1,5 +1,6 @@
 extends layout
 
+
 block content
 	h1 Quizzes
 	for quiz in quizzes	
@@ -13,7 +14,7 @@ block content
 				td Answer Key	
 				- each q in quiz.questions
 					tr
-						td= q.question
+						td= q.text
 						td
 							- var n = 1
 							while n < 6
@@ -21,6 +22,12 @@ block content
 								br
 								- n++
 						td Answer: #{q.answerKey}
+		form(method="post", action="/editQuiz")
+			input(type='hidden', name='quizID', value=quiz.id)
+			input(type="submit", value='Edit')
+		form(method="post", action="/deleteQuiz")
+			input(type='hidden', name='quizID', value=quiz.id)
+			input(type="submit", value='Delete')
 		p
-	a(href='/addQuiz2') Add a Quiz
+	a(href='/addQuiz') Add a Quiz
   
