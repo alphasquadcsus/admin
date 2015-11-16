@@ -5,10 +5,14 @@ var newQuiz;
 var space = "&nbsp; &nbsp; &nbsp; &nbsp;";
 var questionCount = 0;
 $(document).ready(function(){
-    //HTML DOM Objects
+    //HTML DOM Objects																																																																																																																																																																									
     var jQuiz = $('#quiz');
     var jQuestions = $('#questions');
-
+	
+	$('#editQuiz').click(function(){ //For edit page
+		window.alert(quiz.name);
+	});
+	
     $('#newQuiz').click(function(){
         var quizName = $('#quizName').val();
         var tourID = $('#tourID').val();
@@ -90,8 +94,8 @@ $(document).ready(function(){
 		}
 			
         var answer = $('#answerKey').val();
-        newQuiz.addQuestion(questionName, arrQuestion, answer, questionCount);
-		questionCount++; //Increment question number answer array is for
+        newQuiz.addQuestion(questionName, arrQuestion, answer, questionCount);  //Changed to include questionCount
+		
         $('#tempQuestion').remove();
 		var $questionDiv = $("<div>", {id: "q"+questionCount});
 		$questionDiv.append("<br><b>" + questionName +":</b>" + space + "<input type='button' id='question"+questionCount+"' value='Edit'><br>");
@@ -103,10 +107,12 @@ $(document).ready(function(){
 		jQuiz.append($questionDiv);
 		editQuestion();
         generateQATemplate();
+		
+		questionCount++; //Increment question number answer array is for
     };
 	
 	function editQuestion(){
-		var temp = "question" + questionCount++;
+		var temp = "question" + questionCount;
 		$('#'+temp).click(function(){
 			editTemplate(temp);
 		});
@@ -215,7 +221,7 @@ $(document).ready(function(){
 	function submitQuiz(){
 		//Ajax by Dennis
 		$.ajax({
-			url: '/addQuiz2', //Post url
+			url: '/addQuiz', //Post url
 			type: 'POST',
 			dataType: "json", 
 			data: {  //JSON data

@@ -8,7 +8,7 @@ Quiz = function(quizName, tourID){
     this.quizName = quizName;
     //The tour that the quiz is associated with
     this.tourID = tourID;
-    this.questions = []
+    this.questions = [];
     this.answers = [];
     this.answerKeys = [];
 };

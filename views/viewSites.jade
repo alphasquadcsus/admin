@@ -1,0 +1,24 @@
+extends layout
+block content
+	h1 Sites
+	a(href='/addSite') Add a site
+	br
+	for site in allSites
+		table(border="1", cellpadding="5")
+			tr
+				td(colspan="2") Site Name: #{site.name}
+			tr
+				td Latitude: #{site.latitude}
+			tr
+				td Longitude: #{site.longitude}
+			tr
+				td Associated Types:
+					for type in site.type
+						pre=type
+		form(method="post", action="/editSite")
+			input(type='hidden', name='siteID', value=site.id)
+			input(type="submit", value='Edit')
+		form(method="post", action="/deleteSite")
+			input(type='hidden', name='siteID', value=site.id)
+			input(type="submit", value='Delete')
+		p
