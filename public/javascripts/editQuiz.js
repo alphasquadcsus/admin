@@ -5,6 +5,7 @@ function setQuiz(quiz){
 		quizObj.addQuestion(quizData.questions[i].text,quizData.questions[i].answers,
 			quizData.questions[i].answerKey,i);
 	}
+	genQuizTemplate(quizObj);
 };
 function getQuiz(){
 	return quizObj;
