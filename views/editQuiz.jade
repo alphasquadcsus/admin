@@ -1,9 +1,15 @@
 doctype html
 html
 	head
-		script(src='/javascripts/editQuiz.js')
+		script(src="/javascripts/jquery-2.1.4.js")
 		script(src='/javascripts/quiz.js')
+		script(src='/javascripts/editQuizUI.js')		
 		script.
-			var quizData = !{JSON.stringify(quiz)};	
-			window.onload = setQuiz(quizData);
+			$(document).ready(function(){
+				var quizData = !{JSON.stringify(quiz)};	
+				window.onload = setQuiz(quizData);
+			});
 	body
+		#quiz 
+			#initQuiz
+			#questions

@@ -4,15 +4,26 @@
 var newQuiz;
 var space = "&nbsp; &nbsp; &nbsp; &nbsp;";
 var questionCount = 0;
+var quizObj;
+function setQuiz(quiz){
+	quizObj = new Quiz(quiz.name, quiz.tour); //Works, creates new quiz object
+	for(var i = 0; i < quiz.questions.length; i++){
+		quizObj.addQuestion(quiz.questions[i].text,quiz.questions[i].answers,
+			quiz.questions[i].answerKey,i);
+	}
+	genQuizTemplate(quizObj);
+};
 $(document).ready(function(){
-    
+	var jQuiz = $('#quiz');
+    var jQuestions = $('#questions');
 	window.genQuizTemplate = function(quiz){
 		var i = quiz.getQuestions.length;
 		for(var k = 0; k <i-1; k++){
 			addQuestion(quiz,k);
 		}
 		generateQATemplate();
-	}
+	};
+
 
     $('#newQuiz').click(function(){
         var quizName = $('#quizName').val();
@@ -56,7 +67,7 @@ $(document).ready(function(){
 			submitQuiz();
 		});
 
-    }
+    };
 
     function addQuestion(quizObj, index){
 		var i = 0;
@@ -80,7 +91,7 @@ $(document).ready(function(){
 			editTemplate(temp);
 		});
 		
-	}
+	};
 	
 	function editTemplate(question){
 		var index = question.match(/(\d\d)|(\d)/g);
@@ -127,7 +138,7 @@ $(document).ready(function(){
 			$('#tempQuestion').remove();
 			generateQATemplate();
 		});
-	}
+	};
 
 	function submitEdit(index){
 		var i = 0;
@@ -178,12 +189,12 @@ $(document).ready(function(){
 		}
 		$questionDiv.append("Answer: " + answer +"<br>");
 		editQuestion();
-	}
+	};
 	
 	function submitQuiz(){
 		//Ajax by Dennis
 		$.ajax({
-			url: '/addQuiz2', //Post url
+			url: '/updateQuiz', //Post url
 			type: 'POST',
 			dataType: "json", 
 			data: {  //JSON data
@@ -193,11 +204,10 @@ $(document).ready(function(){
 				answers: JSON.stringify(newQuiz.getAnswers()),
 				answerKeys: JSON.stringify(newQuiz.getAnswerKeys())
 			},
-			success: function(){
-				
+			success: function(data){
+				window.location = data.redirect; //Redirect to redirect value in res.send
 			},
 		});
-		window.location.replace('/viewQuizzes2'); //redirect 
-	}
+	};
 	
 });
