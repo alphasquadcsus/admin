@@ -5,14 +5,11 @@ var newQuiz;
 var space = "&nbsp; &nbsp; &nbsp; &nbsp;";
 var questionCount = 0;
 $(document).ready(function(){
-    //HTML DOM Objects																																																																																																																																																																									
+    //HTML DOM Objects
     var jQuiz = $('#quiz');
     var jQuestions = $('#questions');
-	
-	$('#editQuiz').click(function(){ //For edit page
-		window.alert(quiz.name);
-	});
-	
+	var jSubmittedQuestion = $('#submittedQuestions');
+
     $('#newQuiz').click(function(){
         var quizName = $('#quizName').val();
         var tourID = $('#tourID').val();
@@ -27,21 +24,13 @@ $(document).ready(function(){
         jQuestions.append(
             "<div id='tempQuestion'>" +
             "Question:<input type='text' id='newQuestion'>"+
-            "<br>"+
             "Possible Answers:<br>"+
             "Answer 1: <input type='text' id='answer1'>" +
-            "<br>" +
             "Answer 2: <input type='text' id='answer2'>" +
-            "<br>" +
             "Answer 3: <input type='text' id='answer3'>" +
-            "<br>" +
             "Answer 4: <input type='text' id='answer4'>" +
-            "<br>" +
             "Answer 5: <input type='text' id='answer5'>" +
-            "<br>" +
-            "<br>" +
             "Answer key #: <input type='text' id='answerKey'>"+
-            "<br><br>" +
             "<input type='button' id='submitQuestion' value='Submit Question'>" +
 			"<input type='button' id='submitQuiz' value='Submit Quiz'>" +
             "</div>"
@@ -94,25 +83,25 @@ $(document).ready(function(){
 		}
 			
         var answer = $('#answerKey').val();
-        newQuiz.addQuestion(questionName, arrQuestion, answer, questionCount);  //Changed to include questionCount
-		
+        newQuiz.addQuestion(questionName, arrQuestion, answer);
         $('#tempQuestion').remove();
-		var $questionDiv = $("<div>", {id: "q"+questionCount});
-		$questionDiv.append("<br><b>" + questionName +":</b>" + space + "<input type='button' id='question"+questionCount+"' value='Edit'><br>");
+		var $questionDiv = $("<div>", {id: "q"+questionCount, class: "small-4 columns float-left"});
+		$questionDiv.append("<br><span class='label'>Question " + (questionCount +1) +	"</span><br>");
 		
+		var $table = "<table class='hover'><thead><tr>"+questionName +"</tr></thead><tbody>";
 		for(var i = 0; i < arrQuestion.length; i++) {
-			$questionDiv.append(space, (i+1) +") " + arrQuestion[i]+"<br>");
+			$table += "<tr><td>" + (i+1) +") " + arrQuestion[i]+"</td></tr>";
 		}
-		$questionDiv.append("Answer: " + answer +"<br>");
-		jQuiz.append($questionDiv);
+		$table += "</tbody></table>";
+		$questionDiv.append($table);
+		$questionDiv.append("Answer: " + answer +"<br><input type='button' id='question"+questionCount+"' value='Edit'>");
+		jSubmittedQuestion.append($questionDiv);
 		editQuestion();
         generateQATemplate();
-		
-		questionCount++; //Increment question number answer array is for
     };
 	
 	function editQuestion(){
-		var temp = "question" + questionCount;
+		var temp = "question" + questionCount++;
 		$('#'+temp).click(function(){
 			editTemplate(temp);
 		});
@@ -208,12 +197,16 @@ $(document).ready(function(){
 		var temp = "q" + index;
 		var $questionDiv = $('#'+temp);
 		$questionDiv.empty();
-		$questionDiv.append("<br><b>" + questionName +":</b>" + space + "<input type='button' id='question"+questionCount+"' value='Edit'><br>");
+		$questionDiv.append("<br><span class='label'>Question " + (questionCount +1) +	"</span><br>");
 		
+		var $table = "<table class='hover'><thead><tr>"+questionName +"</tr></thead><tbody>";
 		for(var i = 0; i < arrQuestion.length; i++) {
-			$questionDiv.append(space, (i+1) +") " + arrQuestion[i]+"<br>");
+			$table += "<tr><td>" + (i+1) +") " + arrQuestion[i]+"</td></tr>";
 		}
-		$questionDiv.append("Answer: " + answer +"<br>");
+		$table += "</tbody></table>";
+		$questionDiv.append($table);
+		
+		$questionDiv.append("Answer: " + answer +"<br><input type='button' id='question"+questionCount+"' value='Edit'>");
 		editQuestion();
         generateQATemplate();
 	}
@@ -221,7 +214,7 @@ $(document).ready(function(){
 	function submitQuiz(){
 		//Ajax by Dennis
 		$.ajax({
-			url: '/addQuiz', //Post url
+			url: '/addQuiz2', //Post url
 			type: 'POST',
 			dataType: "json", 
 			data: {  //JSON data
@@ -231,9 +224,11 @@ $(document).ready(function(){
 				answers: JSON.stringify(newQuiz.getAnswers()),
 				answerKeys: JSON.stringify(newQuiz.getAnswerKeys())
 			},
-			success: function(data){
-				window.location = data.redirect; //Redirect to redirect value in res.send
+			success: function(){
+				
 			},
 		});
-	};
+		window.location.replace('/viewQuizzes2'); //redirect 
+	}
+	
 });

@@ -1,5 +1,5 @@
 {
-  "name": "t1_2016",
+  "name": "admin2016",
   "main": "server.js",
   "private": true,
   "license": "MIT",
@@ -13,6 +13,7 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "mongoose": "~3.6.13",
-	"morgan": "*"
+	"morgan": "*",
+	"debug": "~2.2.0"
   }
 }

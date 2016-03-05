@@ -1,0 +1,52 @@
+
+<div style="background-color:#E1CF99;">
+	<!--
+	<link rel="stylesheet" href="/css/foundation.css" />
+	<link rel="stylesheet" href="/css/app.css" />
+	<script src="../lib/what-input.min.js"></script>
+	<script src="../lib/foundation.min.js"></script>
+	<script src="../js/app.js"></script>
+	-->
+	<a href="/site/add">Add a Site</a>
+	
+	<ul ng-repeat="site in siteData">
+		<li>Name: {{site.title}}</li>
+		<li>Type: {{site.tourtype}}</li>
+		<li>Rating: {{site.rating}}</li>
+		<li>Latitude: {{site.lat}}</li>
+		<li>Longitude: {{site.lon}}</li>
+		<li>Description: {{site.description}}</li>
+		<li>Technical: {{site.technical}}</li>
+		<br>
+	</ul>
+	<!--<ul ng-repeat="site in siteData">
+		<li>Name: {{site.title}}</li>
+		<li>ID: {{site.idnum}}</li>
+		<li>Type: {{site.tourtype}}</li>
+		<li>Rating: {{site.rating}}</li>
+		<li>Latitude: {{site.lat}}</li>
+		<li>Longitude: {{site.lon}}</li>
+		<li>Description: {{site.description}}</li>
+		<li>Technical: {{site.technical}}</li>
+	</ul>
+	-->
+	<!--
+	<ul class="accordion" data-accordion role="tablist" ng-repeat="site in siteData">
+		<li class="accordion-item is-active">
+			<a href="#panel1d" role="tab" class="accordion-title" id="panel1d-heading" aria-controls="panel1d">{{site.title}}</a>
+			<div id="panel1d" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1d-heading">
+				<table background-color="white">
+					<tr>
+						<td>ID: {{site.idnum}}</td>
+						<td>Type: {{site.tourtype}}</td>
+						<td>Rating: {{site.rating}}</td>
+						<td>Latitude: {{site.lat}}</td>
+						<td>Longitude: {{site.lon}}</td>
+						<td>Description: {{site.description}}</td>
+						<td>Technical: {{site.technical}}</td>
+				</table>
+			</div>
+		</li>
+	</ul>	
+	-->
+</div>

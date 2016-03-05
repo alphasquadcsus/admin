@@ -1,0 +1,76 @@
+<div>
+	<link rel="stylesheet" href="/css/foundation.css" />
+	<link rel="stylesheet" href="/css/app.css" />
+	<script src="/lib/what-input.min.js"></script>
+	<script src="/lib/foundation.min.js"></script>
+	
+	<center>
+	
+	<div class="row">
+		<div class="large-6 medium-4 columns">
+			<fieldset class="fieldset">
+				<legend>Tour Length</legend>
+				<input id="general" type="checkbox"><label>General</label>
+				<input id="short" type="checkbox"><label>Short</label>
+			</fieldset>
+			<fieldset class="fieldset">
+				<legend>Tour Type</legend>
+					<input id="concrete" type="checkbox" ng-model="concrete"><label>Concrete</label>
+					<input id="steel" type="checkbox" ng-model="steel"><label>Steel</label>
+					<input id="timber" type="checkbox" ng-model="timber"><label>Timber</label>
+					<input id="connections" type="checkbox" ng-model="connections"><label>Connections</label>
+					<input id="lateral" type="checkbox" ng-model="lateral"><label>Lateral</label>		
+			</fieldset>
+
+			<div class="row">
+				<div class="large-12 medium-4 columns">
+					<fieldset class="fieldset">
+						<legend>Coordinates</legend>
+						<div class="medium-6 columns">
+							<label>Longitude
+								<input type="text" placeholder="123.4567" ng-model="lon">
+							</label>
+						</div>
+					<div class="large-6 medium-4 columns">
+						<label>Latitude</label>
+						<input type="text" placeholder="123.45567" ng-model="lat">
+				  </div>
+				</div>
+			</div>
+			
+			<div class="callout">
+				<label>
+				  Description of Tour site
+				  <textarea placeholder="Description"></textarea>
+				</label>
+			</div>
+			<input type="button" value="Submit" ng-click="submit()">
+		</div>
+		<!-- Edgar Quiz
+		<div class="large-6 medium-4 columns"id="quiz">
+			<div class="large-4 medium-4 columns" id="initQuiz">
+				<form>
+					<p>Quiz Name:
+					<input type="text" id="quizName">
+					</p>
+					<p><br>
+					  Tour link ID:
+					  <input type="text" id="tourID">
+					  <br>
+					</p>
+					<p>
+					  <input type="button" value="Submit" id="newQuiz">
+					</p>
+				</form>
+			</div>
+			<div class="medium-4 small-2 columns" id="questions">
+
+			</div>
+			<div class="large-8 small-4 columns float-left" >
+				<div id="submittedQuestions">
+				</div>
+			</div>
+		</div>
+		-->
+	</div>
+</div>

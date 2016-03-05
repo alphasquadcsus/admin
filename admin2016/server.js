@@ -3,20 +3,11 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
-var app = express();
 
 var config = require('./config/serverConfig');
 var routes = require('./server/routes/index');
 
-//Morgan
-app.use(morgan('dev'));
-//Body parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: false 
-}));
-//Set public folder as static path
-app.use(express.static(path.join(__dirname, 'public')));
+var app = express();
 
 
 //Mongoose setup
@@ -27,6 +18,17 @@ mongoose.connect(config.db, function(err){
 		console.log('Connection to database successful');
 	}
 });
+
+
+//Morgan
+app.use(morgan('dev'));
+//Body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: false 
+}));
+//Set public folder as static path
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 app.use('/api', routes); //API routing

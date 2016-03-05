@@ -2,22 +2,27 @@
  * Created by Edgar on 10/14/15.
  *
  */
-
 Quiz = function(quizName, tourID){
     //Name of the quiz
     this.quizName = quizName;
     //The tour that the quiz is associated with
     this.tourID = tourID;
-    this.questions = [];
+    this.questions = []
     this.answers = [];
     this.answerKeys = [];
 };
 
 //Adds the question and answer key to the object
-Quiz.prototype.addQuestion = function (questionName, answers, key, questionCount) {
+Quiz.prototype.addQuestion = function (questionName, answers, key) {
     this.questions.push(questionName);
-    this.answers[questionCount] = (answers);  //Array of array of answers with question
+    this.answers.push(answers);
     this.answerKeys.push(key);
+};
+
+Quiz.prototype.editQuestion = function(questionName, answers, key, index){
+	this.questions[index] = questionsName;
+	this.answers[index] = answers;
+	this.key[index] = answers;
 };
 
 //Returns the name of the quiz
@@ -32,7 +37,7 @@ Quiz.prototype.getTourID = function(){
 
 //Returns the array of question
 Quiz.prototype.getQuestions = function(){
-	return this.questions;
+    return this.questions;
 };
 
 Quiz.prototype.getAnswers = function() {

@@ -1,8 +1,11 @@
 angular.module('adminService',[])
-	.factory('Site', function($http){
+	.factory('Site', ['$http', function($http){
 		return {
 			get : function() {
-				return $http.get('/api/sites/')
+				return $http.get('/api/sites/view')
+			},
+			create : function(siteData) {
+				return $http.post('/api/sites/add', siteData)
 			}
 		}
-	});
+	}]);
