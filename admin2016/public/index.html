@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="" ng-app="adminApp">
-
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta charset="utf-8">
@@ -9,63 +8,36 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="stylesheet" type="text/css" href="/css/admin.css">
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/foundation.css" />
+		<link rel="stylesheet" href="/css/app.css" />
 				
-		<script src="lib/jquery-2.1.4.js"></script>
-		<script src="lib/jquery.min.js"></script>
-		<script src="lib/angular/angular.min.js"></script>
-		<script src="lib/angular-route/angular-route.min.js"></script>
-		
+		<script src="/lib/jquery.min.js"></script>
+		<script src="/lib/what-input.min.js"></script>
+		<script src="/lib/foundation.min.js"></script>
+		<script src="/js/app.js"></script>
+		<script src="/lib/angular/angular.min.js"></script>
+		<script src="/lib/angular-route/angular-route.min.js"></script>
 		
 		<!-- Angular-->
-		<script src="js/angular/controllers.js"></script>
-		<script src="js/angular/services.js"></script>
-		<script src="js/angular/core.js"></script>
-		
-		
+		<script src="/js/angular/controllers.js"></script>
+		<script src="/js/angular/services.js"></script>
+		<script src="/js/angular/core.js"></script>
+	
 		<!--Location Provider base link-->
 		<base href="/">
 		
-		
 	</head>
-
-	<body ng-controller="mainCtrl">
-		<div class="header">
-			<img src='/img/csuslogo.png'></img>
+	
+	<body >
+	<ul class="sub-nav menu" role="navigation">
+		<li class="active"><span class="show-for-sr"></span><a href="">All</a></li>
+		<li><a href="/view/createTour">Create Tour</a></li>
+		<li><a href="/view/createTourSite">Create Tour Site</a></li>
+		<li><a href="/createTest">Create Test</a></li>
+		<li><a href="/view/editTours">Edit Tours</a></li>
+		<li><a href="/editTest.html">Edit Tests</a></li>
+	</ul>
+		<div ng-view>
 		</div>
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="/">Home</a></li>
-						<li><a href="/site/view">Tour Sites</a></li>
-						<li><a href="/quiz/view">Quizzes</a></li>
-						<!--<li><a href="/viewStatistics">Statistics</a></li>-->
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-		</nav>
-		
-		<!--Angular partial view-->
-		<div ng-view></div>
-				
-		<div class="footer">
-			<p>Copyright Alpha Squad 2015. Please don't sue us, Sac State.</p>
-		</div>
-
-		
-		
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
-		<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-		-->
 	</body>
 </html>
