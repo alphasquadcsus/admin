@@ -13,8 +13,7 @@ router.get('/view',function(req, res){ //View all the sites
 
 router.post('/add',function(req, res){ //Posts data from createSite.js
 	var site = new Tour();
-	site.idnum=req.body.idNum;
-	site.tourtype=JSON.parse(req.body.type);
+	site.tourtype=req.body.type;
 	site.title=req.body.title;
 	site.lat=req.body.lat;
 	site.lon=req.body.lon;

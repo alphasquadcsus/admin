@@ -19,10 +19,4 @@ angular.module('adminCtrl',[])
 	}])
 	.controller('quizCtrl', ['$scope', '$http', function($scope, $http){
 		
-	}])
-	
-	.controller('testCtrl', ['$scope', '$http', function($scope, $http){
-		$scope.quiz = [
-			{ question: "", option1: "", option2: "", option3: "", option4: "", option5: "", answer: "", hint: ""}
-		];
 	}]);
