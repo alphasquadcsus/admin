@@ -21,6 +21,15 @@ adminApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
 			templateUrl : '/views/addSite.html',
 			controller : 'siteCtrl'
 		})
+		.when('/test', {
+			templateUrl : '/views/test.html',
+			controller : 'testCtrl'
+		})
+		.when('/createTest', {
+			templateUrl : '/views/createTest.html',
+			controller : 'mainCtrl'
+		})
+		
 		.otherwise({
 			redirectTo: '/'
 		});
