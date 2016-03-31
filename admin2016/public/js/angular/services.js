@@ -6,6 +6,41 @@ angular.module('adminService',[])
 			},
 			create : function(siteData) {
 				return $http.post('/api/sites/add', siteData)
+			},
+			update : function(siteData){
+				return $http.put('/api/sites/update',siteData)
+			},
+			remove : function(title){
+				return $http.delete('/api/sites/remove/'+title)
+			}
+		}
+	}])
+	.factory('Share', function(){
+		var savedData = {}
+		function set(data){
+			savedData = data;
+		}
+		function get() {
+			return savedData;
+		}
+		return {
+			set: set,
+			get: get
+		}
+	})
+	.factory('Quiz', ['$http', function($http){
+		return {
+			get : function() {
+				return $http.get('/api/quizzes/view')
+			},
+			create : function(quizData) {
+				return $http.post('/api/quizzes/add', quizData)
+			},
+			update : function(quizData){
+				return $http.put('/api/quizzes/update',quizData)
+			},
+			remove : function(id){
+				return $http.delete('/api/quizzes/remove/'+id)
 			}
 		}
 	}]);

@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="" ng-app="adminApp">
+
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta charset="utf-8">
@@ -7,37 +8,41 @@
 		<title>Civil Engineering Tour - Home</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+		<link rel="stylesheet" type="text/css" href="css/foundation.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
 		
-		<link rel="stylesheet" href="/css/foundation.css" />
-		<link rel="stylesheet" href="/css/app.css" />
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/what-input.min.js"></script>
+		<script src="lib/foundation.min.js"></script>
+		<script src="js/app.js"></script>
+		
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-route/angular-route.min.js"></script>	
 				
-		<script src="/lib/jquery.min.js"></script>
-		<script src="/lib/what-input.min.js"></script>
-		<script src="/lib/foundation.min.js"></script>
-		<script src="/js/app.js"></script>
-		<script src="/lib/angular/angular.min.js"></script>
-		<script src="/lib/angular-route/angular-route.min.js"></script>
-		
 		<!-- Angular-->
-		<script src="/js/angular/controllers.js"></script>
-		<script src="/js/angular/services.js"></script>
-		<script src="/js/angular/core.js"></script>
-	
-		<!--Location Provider base link-->
-		<base href="/">
+		<script src="js/angular/controllers.js"></script>
+		<script src="js/angular/services.js"></script>
+		<script src="js/angular/core.js"></script>
 		
+		<!--Location Provider base link	-->
+		<base href="/">
 	</head>
-	
-	<body >
-	<ul class="sub-nav menu" role="navigation">
-		<li class="active"><span class="show-for-sr"></span><a href="">All</a></li>
-		<li><a href="/view/createTour">Create Tour</a></li>
-		<li><a href="/view/createTourSite">Create Tour Site</a></li>
-		<li><a href="/createTest">Create Test</a></li>
-		<li><a href="/view/editTours">Edit Tours</a></li>
-		<li><a href="/editTest.html">Edit Tests</a></li>
-	</ul>
-		<div ng-view>
+
+	<body>
+		<div>
+			<img src='/img/csuslogo.png'></img>
 		</div>
+		<ul class="sub-nav menu" role="navigation">
+			<li class="active">
+				<span class="show-for-sr"></span><a href="/">Home</a>
+			</li>
+			<li><a href="/site/view">Tour Sites</a></li>
+			<li><a href="/quiz/view">Quizzes</a></li>
+		</ul>
+		
+		<!--Angular partial view-->
+		<div ng-view></div>
+		
 	</body>
 </html>

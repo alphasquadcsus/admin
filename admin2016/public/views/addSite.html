@@ -1,76 +1,59 @@
-<div>
-	<link rel="stylesheet" href="/css/foundation.css" />
-	<link rel="stylesheet" href="/css/app.css" />
-	<script src="/lib/what-input.min.js"></script>
-	<script src="/lib/foundation.min.js"></script>
-	
-	<center>
-	
-	<div class="row">
-		<div class="large-6 medium-4 columns">
-			<fieldset class="fieldset">
-				<legend>Tour Length</legend>
-				<input id="general" type="checkbox"><label>General</label>
-				<input id="short" type="checkbox"><label>Short</label>
-			</fieldset>
-			<fieldset class="fieldset">
-				<legend>Tour Type</legend>
-					<input id="concrete" type="checkbox" ng-model="concrete"><label>Concrete</label>
-					<input id="steel" type="checkbox" ng-model="steel"><label>Steel</label>
-					<input id="timber" type="checkbox" ng-model="timber"><label>Timber</label>
-					<input id="connections" type="checkbox" ng-model="connections"><label>Connections</label>
-					<input id="lateral" type="checkbox" ng-model="lateral"><label>Lateral</label>		
-			</fieldset>
+<div class="large-6 medium-4 columns">
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="css/app.css" />
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/what-input.min.js"></script>
+	<script src="lib/foundation.min.js"></script>
+	<script src="js/app.js"></script>
 
-			<div class="row">
-				<div class="large-12 medium-4 columns">
-					<fieldset class="fieldset">
-						<legend>Coordinates</legend>
-						<div class="medium-6 columns">
-							<label>Longitude
-								<input type="text" placeholder="123.4567" ng-model="lon">
-							</label>
-						</div>
-					<div class="large-6 medium-4 columns">
-						<label>Latitude</label>
-						<input type="text" placeholder="123.45567" ng-model="lat">
-				  </div>
-				</div>
-			</div>
+	<ul class="sub-nav menu" role="navigation">
+		<li><span class="show-for-sr"></span><a href="/site/view">View Sites</a></li>
+		<li class="active"><a href="/site/add">Add a Tour Site</a></li>
+	</ul>	
+	<div>
+		<label>Name</label>
+		<input type="text" placeholder="Tour Name" ng-model="formData.title">
+
+		<fieldset class="fieldset">
+			<legend>Tour Length</legend>
+			<input id="general" type="checkbox" ng-model="formData.type.general"><label>General</label>
+			<input id="short" type="checkbox" ng-model="formData.type.shortType"><label>Short</label>
+		</fieldset>
+		<fieldset class="fieldset">
+			<legend>Tour Type</legend>
+				<input id="concrete" type="checkbox" ng-model="formData.type.concrete"><label>Concrete</label>
+				<input id="steel" type="checkbox" ng-model="formData.type.steel"><label>Steel</label>
+				<input id="timber" type="checkbox" ng-model="formData.type.timber"><label>Timber</label>
+				<input id="connections" type="checkbox" ng-model="formData.type.connections"><label>Connections</label>
+				<input id="lateral" type="checkbox" ng-model="formData.type.lateral"><label>Lateral</label>		
+		</fieldset>
+
+		<fieldset class="fieldset">
+			<legend>Coordinates</legend>
 			
-			<div class="callout">
-				<label>
-				  Description of Tour site
-				  <textarea placeholder="Description"></textarea>
-				</label>
-			</div>
-			<input type="button" value="Submit" ng-click="submit()">
-		</div>
-		<!-- Edgar Quiz
-		<div class="large-6 medium-4 columns"id="quiz">
-			<div class="large-4 medium-4 columns" id="initQuiz">
-				<form>
-					<p>Quiz Name:
-					<input type="text" id="quizName">
-					</p>
-					<p><br>
-					  Tour link ID:
-					  <input type="text" id="tourID">
-					  <br>
-					</p>
-					<p>
-					  <input type="button" value="Submit" id="newQuiz">
-					</p>
-				</form>
-			</div>
-			<div class="medium-4 small-2 columns" id="questions">
+			<label>Latitude</label>
+			<input type="text" placeholder="38.5651845" ng-model="formData.lat">
+			
+			<label>Longitude</label>
+			<input type="text" placeholder="-121.4170459" ng-model="formData.lon">
 
-			</div>
-			<div class="large-8 small-4 columns float-left" >
-				<div id="submittedQuestions">
-				</div>
-			</div>
+		</fieldset>
+
+		<label>Description of Tour site</label>
+		<textarea placeholder="Description" ng-model="formData.description"></textarea>
+		
+		<label>Technical Description of Tour site</label>
+		<textarea placeholder="Technical Description" ng-model="formData.technical"></textarea>
+		<!--
+		<div ng-repeat="pic in formData.picData">
+			<label>Image</label>
+			<input type="file" file-model="pic.file">
+			<label>Image Description</label>
+			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
 		</div>
+		<input type="button" value="Add New Image" ng-click="addImg()">
 		-->
 	</div>
+	<input type="button" value="Submit" id="submitTourSite" ng-click="submitForm()">
 </div>
+	

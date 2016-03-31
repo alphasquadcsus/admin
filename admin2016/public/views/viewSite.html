@@ -1,64 +1,68 @@
 
-<div background-color="#E1CF99">
-	<!--
-	<link rel="stylesheet" href="/css/foundation.css" />
-	<link rel="stylesheet" href="/css/app.css" />
-	<script src="../lib/what-input.min.js"></script>
-	<script src="../lib/foundation.min.js"></script>
-	<script src="../js/app.js"></script>
-	-->
-	<a href="/site/add">Add a Site</a>
-	<table background-color="white" ng-repeat="site in siteData">
-		<tr>
-			<td>ID: {{site.title}}</td>
-		</tr>
-		<tr>
-			<td>Type: {{site.tourtype}}</td>
-		</tr>
-		<tr>
-			<td>Rating: {{site.rating}}</td>
-		</tr>
-		<tr>
-			<td>Latitude: {{site.lat}}</td>
-		</tr>
-		<tr>
-			<td>Longitude: {{site.lon}}</td>
-		</tr>
-		<tr>
-			<td>Description: {{site.description}}</td>
-		</tr>
-		<tr>
-			<td>Technical: {{site.technical}}</td>
-		</tr>
-	</table>
-	<!--<ul ng-repeat="site in siteData">
-		<li>Name: {{site.title}}</li>
-		<li>ID: {{site.idnum}}</li>
-		<li>Type: {{site.tourtype}}</li>
-		<li>Rating: {{site.rating}}</li>
-		<li>Latitude: {{site.lat}}</li>
-		<li>Longitude: {{site.lon}}</li>
-		<li>Description: {{site.description}}</li>
-		<li>Technical: {{site.technical}}</li>
+<div>
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="css/app.css" />
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/what-input.min.js"></script>
+	<script src="lib/foundation.min.js"></script>
+	<script src="js/app.js"></script>
+	
+	<ul class="sub-nav menu" role="navigation">
+		<li class="active"><span class="show-for-sr"></span><a href="/site/view">View Tour Sites</a></li>
+		<li><a href="/site/add">Add a Tour Site</a></li>
 	</ul>
-	-->
-	<!--
-	<ul class="accordion" data-accordion role="tablist" ng-repeat="site in siteData">
-		<li class="accordion-item is-active">
-			<a href="#panel1d" role="tab" class="accordion-title" id="panel1d-heading" aria-controls="panel1d">{{site.title}}</a>
-			<div id="panel1d" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1d-heading">
-				<table background-color="white">
+	<div>
+		<ol><h3>Sites</h3>
+			<li ng-repeat="site in siteData">	
+				<a href="" ng-click="showing = !showing">Site Name: {{site.title}}</a>
+				<table border="5" border-style="solid" width="400" ng-show="showing">
 					<tr>
-						<td>ID: {{site.idnum}}</td>
-						<td>Type: {{site.tourtype}}</td>
-						<td>Rating: {{site.rating}}</td>
-						<td>Latitude: {{site.lat}}</td>
-						<td>Longitude: {{site.lon}}</td>
-						<td>Description: {{site.description}}</td>
-						<td>Technical: {{site.technical}}</td>
+						<td width="150">Site Name:</td>
+						<td>{{site.title}}</td>
+					</tr>
+					<tr>
+						<td width="150">Type:</td>
+						<td>
+							<div ng-repeat="t in site.tourtype">{{t}}</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Latitude:</td>
+						<td>{{site.lat}}</td>
+					</tr>
+					<tr>
+						<td>Longitude:</td>
+						<td>{{site.lon}}</td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td>{{site.description}}</td>
+					</tr>
+					<tr>
+						<td>Technical Info:</td>
+						<td>{{site.technicaldescription}}</td>
+					</tr>
+					<tr>
+						<td>Average Rating:</td>
+						<td>{{site.rating}}</td>
+					</tr>
+
+					<tr>
+						<td>Images:</td>
+						<td colspan="3" ng-repeat="img in site.pics">
+							<img src={{img.src}} width="400" height="400">
+							<label>Image Description:</label>
+							<p>{{img.description}}</p>
+							<label>Image Technical Description:</label> 
+							<p>{{img.technicaldescription}}</p>
+						</td>
+					</tr>
 				</table>
-			</div>
-		</li>
-	</ul>	
-	-->
-</div>
+				<button style="border:1px solid;" type="button" ng-click="editSite(site)">Edit Site</button>
+				<button style="border:1px solid;" type="button" ng-click="removeSite(site.title)">Delete Site</button>
+				<br>
+			</li>
+		</ol>	
+	</div>	
+</div>	
+	

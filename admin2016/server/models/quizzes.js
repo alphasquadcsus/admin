@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var QuizSchema = new Schema({
     idnum: Number,
+	name: String,
     questions: 
         {
             question: String,
@@ -11,7 +12,7 @@ var QuizSchema = new Schema({
 			answer: Number,
             hint : String
         }
-    
 });
+
 
 module.exports = mongoose.model('Quiz', QuizSchema);
