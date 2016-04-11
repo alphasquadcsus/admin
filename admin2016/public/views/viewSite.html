@@ -12,7 +12,7 @@
 		<li><a href="/site/add">Add a Tour Site</a></li>
 	</ul>
 	<div>
-		<ol><h3>Sites</h3>
+		<ul><h3>Sites</h3>
 			<li ng-repeat="site in siteData">	
 				<a href="" ng-click="showing = !showing">Site Name: {{site.title}}</a>
 				<table border="5" border-style="solid" width="400" ng-show="showing">
@@ -51,6 +51,7 @@
 						<td>Images:</td>
 						<td colspan="3" ng-repeat="img in site.pics">
 							<img src={{img.src}} width="400" height="400">
+							<label>Image Source:{{img.src}}</label>	
 							<label>Image Description:</label>
 							<p>{{img.description}}</p>
 							<label>Image Technical Description:</label> 
@@ -62,7 +63,7 @@
 				<button style="border:1px solid;" type="button" ng-click="removeSite(site.title)">Delete Site</button>
 				<br>
 			</li>
-		</ol>	
+		</ul>	
 	</div>	
 </div>	
 	

@@ -16,16 +16,32 @@ angular.module('adminCtrl',[])
 	}])
 	.controller('siteAddCtrl', ['$scope', '$http', 'Site', function($scope, $http, Site){
 		$scope.formData = {};
-		/*
 		$scope.formData.picData = [];
-		$scope.formData.picData.push({});
+		$scope.filenames = [];
 		$scope.addImg = function(){
-			$scope.formData.picData.push({});
+			$scope.formData.picData.push({});		
 		}
-		*/
+		
 		$scope.submitForm = function() {
 			var data = $scope.formData;
 			var types = [];
+			
+			var file, fd, filename;
+			var picArr = [];
+			for(var i = 0; i < data.picData.length; i++){
+				file = $scope.formData.picData[i].file;
+				fd = new FormData();
+				fd.append('file', file);
+				Site.upload(fd);
+				filename = "img/"+$scope.filenames[i];
+				picArr.push({
+						src: filename,
+						description: data.picData[i].description,
+						technicaldescription: data.picData[i].technical
+					});
+			}
+			data.pics = picArr;	
+			
 			if(data.type.general){
 				types.push("general");
 			}
@@ -55,13 +71,14 @@ angular.module('adminCtrl',[])
 				data.lon = "-121.4170459";
 			}
 			Site.create(data);
+			angular.element("input[type='file']").val(null);
 			$scope.formData = {};
 		}
 		
 	}])
-	.controller('siteEditCtrl', ['$scope', '$http', 'Site', 'Share', function($scope,$http,Site,Share){
+	.controller('siteEditCtrl', ['$scope', '$http', '$filter', 'Site', 'Share', function($scope,$http,$filter,Site,Share){
 		$scope.formData = {};
-		var data = Share.get();
+		var data = Share.get(); //From View Controller
 		var dataTypes = data.tourtype;
 		var scopeTypes = {};
 		for(var i = 0; i < dataTypes.length; i++){
@@ -87,11 +104,46 @@ angular.module('adminCtrl',[])
 		$scope.formData.lon = data.lon;
 		$scope.formData.description = data.description;
 		$scope.formData.technical = data.technicaldescription;
+		$scope.formData.oldPicData = data.pics;
+		$scope.formData.newPicData = [];
+		$scope.filenames = [];
+		
+		$scope.removeImg = function(data){
+			var notSrc = '!' + data;
+			$scope.formData.oldPicData = $filter('filter')( $scope.formData.oldPicData, {src: notSrc});
+		}
+		$scope.addImg = function(){
+			$scope.formData.newPicData.push({});		
+		}
 		$scope.saveForm = function(){
 			var scopeData = $scope.formData;
-			
 			var types = [];
-	
+			
+			var file, fd, filename;
+			var picArr = [];
+			for(var i = 0; i < scopeData.oldPicData.length; i++){
+				picArr.push({
+						src: scopeData.oldPicData[i].src,
+						description: scopeData.oldPicData[i].description,
+						technicaldescription: scopeData.oldPicData[i].technicaldescription
+					});
+			}
+			
+			for(var i = 0; i < scopeData.newPicData.length; i++){
+				file = scopeData.newPicData[i].file;
+				fd = new FormData();
+				fd.append('file', file);
+				Site.upload(fd);
+				filename = "img/"+$scope.filenames[i];
+				picArr.push({
+						src: filename,
+						description: scopeData.newPicData[i].description,
+						technicaldescription: scopeData.newPicData[i].technicaldescription
+					});	
+			}		
+			
+			scopeData.pics = picArr;
+			
 			if(scopeData.types.general){
 				types.push("general");
 			}
@@ -113,9 +165,7 @@ angular.module('adminCtrl',[])
 			if(scopeData.types.lateral){
 				types.push("lateral");
 			}
-			
 			scopeData.type = types;
-			
 			if(!scopeData.lat){
 				scopeData.lat = "38.5651845";
 			}
@@ -180,4 +230,19 @@ angular.module('adminCtrl',[])
 			
 			$scope.quizData = {};	
 		}
+	}])
+	.directive('fileModel', ['$parse', function($parse){ //Directive for file upload taken from http://stackoverflow.com/questions/32957006/nodejs-multer-angularjs-for-uploading-without-redirecting
+		return {
+			restrict: 'A',
+			link: function(scope, element, attrs){
+				var model = $parse(attrs.fileModel);
+				var modelSetter = model.assign;
+				element.bind('change', function(){
+					scope.$apply(function(){
+						modelSetter(scope, element[0].files[0]);
+						scope.filenames.push(element[0].files[0].name); //Send filename to $scope.filenames array
+					});
+				});			
+			}
+		};
 	}]);

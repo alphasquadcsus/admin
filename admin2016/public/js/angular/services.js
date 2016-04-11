@@ -2,21 +2,27 @@ angular.module('adminService',[])
 	.factory('Site', ['$http', function($http){
 		return {
 			get : function() {
-				return $http.get('/api/sites/view')
+				return $http.get('/api/sites/view');
 			},
 			create : function(siteData) {
-				return $http.post('/api/sites/add', siteData)
+				return $http.post('/api/sites/add', siteData);
 			},
 			update : function(siteData){
-				return $http.put('/api/sites/update',siteData)
+				return $http.put('/api/sites/update',siteData);
 			},
 			remove : function(title){
-				return $http.delete('/api/sites/remove/'+title)
+				return $http.delete('/api/sites/remove/'+title);
+			},
+			upload : function(fd){
+				return $http.post('/api/sites/uploadImg', fd,{
+						transformRequest: angular.identity,
+						headers: {'Content-Type': undefined}
+					});
 			}
 		}
 	}])
 	.factory('Share', function(){
-		var savedData = {}
+		var savedData = {};
 		function set(data){
 			savedData = data;
 		}
@@ -31,16 +37,16 @@ angular.module('adminService',[])
 	.factory('Quiz', ['$http', function($http){
 		return {
 			get : function() {
-				return $http.get('/api/quizzes/view')
+				return $http.get('/api/quizzes/view');
 			},
 			create : function(quizData) {
-				return $http.post('/api/quizzes/add', quizData)
+				return $http.post('/api/quizzes/add', quizData);
 			},
 			update : function(quizData){
-				return $http.put('/api/quizzes/update',quizData)
+				return $http.put('/api/quizzes/update',quizData);
 			},
 			remove : function(id){
-				return $http.delete('/api/quizzes/remove/'+id)
+				return $http.delete('/api/quizzes/remove/'+id);
 			}
 		}
 	}]);

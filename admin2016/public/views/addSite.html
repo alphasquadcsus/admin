@@ -12,7 +12,7 @@
 	</ul>	
 	<div>
 		<label>Name</label>
-		<input type="text" placeholder="Tour Name" ng-model="formData.title">
+		<input type="text" placeholder="Tour Site Name" ng-model="formData.title">
 
 		<fieldset class="fieldset">
 			<legend>Tour Length</legend>
@@ -44,16 +44,19 @@
 		
 		<label>Technical Description of Tour site</label>
 		<textarea placeholder="Technical Description" ng-model="formData.technical"></textarea>
-		<!--
+		
 		<div ng-repeat="pic in formData.picData">
 			<label>Image</label>
 			<input type="file" file-model="pic.file">
 			<label>Image Description</label>
 			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
+			<label>Image Technical Description</label>
+			<textarea placeholder="Image Technical Description" ng-model="pic.technical"></textarea>
 		</div>
 		<input type="button" value="Add New Image" ng-click="addImg()">
-		-->
 	</div>
+	<br></br>
 	<input type="button" value="Submit" id="submitTourSite" ng-click="submitForm()">
+	<br></br>
 </div>
 	

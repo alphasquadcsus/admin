@@ -4,7 +4,7 @@
 		<li><a href="/quiz/add">Add a Quiz</a></li>
 	</ul>
 	<div>
-		<ol><h3>Quizzes</h3>
+		<ul><h3>Quizzes</h3>
 			<li ng-repeat="quiz in quizData">
 				<a href="" ng-click="showing = !showing">Quiz Name: {{quiz.name}}</a>
 				<table border="5" border-style="solid" ng-show="showing">
@@ -38,6 +38,6 @@
 				<button style="border:1px solid;" type="button" ng-click="editQuiz(quiz)">Edit Quiz</button>
 				<button style="border:1px solid;" type="button" ng-click="removeQuiz(quiz._id)">Delete Quiz</button>
 			</li>
-		</ol>
+		</ul>
 	</div>
 </div>

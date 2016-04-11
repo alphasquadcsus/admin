@@ -47,7 +47,32 @@
 		<label>Technical Description of Tour site</label>
 		<textarea placeholder="Technical Description" ng-model="formData.technical"></textarea>
 		
+		<!-- Old Images -->
+		<div ng-repeat="pic in formData.oldPicData">
+			<label>Image</label>
+			<img src={{pic.src}} width="400" height="400">
+			<label>Image Description</label>
+			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
+			<label>Image Technical Description</label>
+			<textarea placeholder="Image Technical Description" ng-model="pic.technicaldescription"></textarea>	
+			<input type="button" value="Remove Image" ng-click="removeImg(pic.src)">
+		</div>
+		
+		<br>
+		<!-- New Images -->
+		<div ng-repeat="pic in formData.newPicData">
+			<label>Image</label>
+			<input type="file" file-model="pic.file">
+			<label>Image Description</label>
+			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
+			<label>Image Technical Description</label>
+			<textarea placeholder="Image Technical Description" ng-model="pic.technicaldescription"></textarea>
+		</div>
+		<input type="button" value="Add New Image" ng-click="addImg()">
+		
 	</div>
+	<br></br>
 	<input type="button" value="Save" id="saveTourSite" ng-click="saveForm()">
+	<br></br>
 </div>
 	

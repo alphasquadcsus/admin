@@ -1,11 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-
 var multer = require('multer');
-var uploading = multer({dest: 'img'});
 
 var Tour = require('../models/tour.js');
+
+var storage = multer.diskStorage({ //Multer storage config
+	destination: function(req, file, cb){ //Upload images to public/img/
+		cb(null, 'public/img/')
+	},
+	filename: function(req, file, cb){ //Keep originalname
+		cb(null, file.originalname)
+	}
+});
+var upload = multer({storage: storage}); //Multer
+
+router.post('/uploadImg', upload.single('file')); //Upload single image with multer
 
 router.get('/view',function(req, res){ //View all the sites
 	Tour.find(function(err, sites){
@@ -28,13 +38,10 @@ router.post('/add',function(req, res){ //Create site
 		if(err) 
 			res.send(err);
 		});
+	res.send("Added Site");
 });
-/*
-router.post('/add/img', uploading, function(req, res){
-	
-});
-*/
-router.put('/update',function(req, res){	
+
+router.put('/update',function(req, res){	//Update site
 	Tour.update(
 		{title:req.body.title},
 		{$set: {
@@ -50,13 +57,15 @@ router.put('/update',function(req, res){
 			if(err)
 				res.send(err)
 		});
+	res.send("Edited Site");
 });
 
-router.delete('/remove/:siteTitle',function(req, res){
+router.delete('/remove/:siteTitle',function(req, res){ //Remove site by site's title
 	var sTitle= req.params.siteTitle;
 	Tour.remove({title:sTitle},function(err,site){
 		if(err)
 			res.send(err)
+		res.send("Tour Site Deleted");
 	});
 });
 
