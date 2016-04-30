@@ -31,6 +31,10 @@ adminApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
 			templateUrl : '/views/editSite.html',
 			controller : 'siteEditCtrl'
 		})
+		.when('/user/view',{
+			templateUrl : '/views/viewUser.html',
+			controller : 'userViewCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

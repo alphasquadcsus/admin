@@ -39,6 +39,9 @@ angular.module('adminService',[])
 			get : function() {
 				return $http.get('/api/quizzes/view');
 			},
+			getOne : function(id) {
+				return $http.get('/api/quizzes/viewOne/'+id);
+			},
 			create : function(quizData) {
 				return $http.post('/api/quizzes/add', quizData);
 			},
@@ -47,6 +50,16 @@ angular.module('adminService',[])
 			},
 			remove : function(id){
 				return $http.delete('/api/quizzes/remove/'+id);
+			}
+		}
+	}])
+	.factory('User', ['$http', function($http){
+		return {
+			get : function() {
+				return $http.get('/api/users/view');
+			},
+			remove : function(id){
+				return $http.delete('/api/users/remove/'+id);
 			}
 		}
 	}]);

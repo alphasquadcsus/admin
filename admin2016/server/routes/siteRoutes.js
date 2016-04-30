@@ -27,24 +27,27 @@ router.get('/view',function(req, res){ //View all the sites
 
 router.post('/add',function(req, res){ //Create site
 	var	site = new Tour();
+	site.idno=req.body.quizID;
 	site.title=req.body.title;
 	site.tourtype=req.body.type;
 	site.lat=req.body.lat;
 	site.lon=req.body.lon;
+	site.rating=0;
 	site.description=req.body.description;
 	site.technicaldescription=req.body.technical;
 	site.pics=req.body.pics;
 	site.save(function(err){
 		if(err) 
 			res.send(err);
+		res.end();
 		});
-	res.send("Added Site");
 });
 
 router.put('/update',function(req, res){	//Update site
 	Tour.update(
 		{title:req.body.title},
 		{$set: {
+			idno:req.body.quizID,
 			tourtype:req.body.type,
 			lat:req.body.lat,
 			lon:req.body.lon,
@@ -56,8 +59,8 @@ router.put('/update',function(req, res){	//Update site
 		function(err,site){
 			if(err)
 				res.send(err)
+			res.end();
 		});
-	res.send("Edited Site");
 });
 
 router.delete('/remove/:siteTitle',function(req, res){ //Remove site by site's title
@@ -65,7 +68,7 @@ router.delete('/remove/:siteTitle',function(req, res){ //Remove site by site's t
 	Tour.remove({title:sTitle},function(err,site){
 		if(err)
 			res.send(err)
-		res.send("Tour Site Deleted");
+		res.end();
 	});
 });
 

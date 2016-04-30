@@ -12,8 +12,7 @@
 		<li class="active"><a href="/site/edit">Edit a Site</a></li>
 	</ul>
 	<div>
-		<label>Name</label>
-		<!--<input type="text" placeholder="Tour Name" ng-model="formData.title">-->
+		<label>Name:</label>
 		<label>{{formData.title}}</label>
 
 		<fieldset class="fieldset">
@@ -47,6 +46,12 @@
 		<label>Technical Description of Tour site</label>
 		<textarea placeholder="Technical Description" ng-model="formData.technical"></textarea>
 		
+		<label>Attached Quiz</label>
+		<select ng-model="quizID">
+			<option value={{formData.idno}}>Keep Current Quiz</option>
+			<option ng-repeat="quiz in quizData" value={{quiz._id}}>{{quiz.idno}}:{{quiz.name}}</option>
+		</select>
+		
 		<!-- Old Images -->
 		<div ng-repeat="pic in formData.oldPicData">
 			<label>Image</label>
@@ -55,7 +60,6 @@
 			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
 			<label>Image Technical Description</label>
 			<textarea placeholder="Image Technical Description" ng-model="pic.technicaldescription"></textarea>	
-			<input type="button" value="Remove Image" ng-click="removeImg(pic.src)">
 		</div>
 		
 		<br>

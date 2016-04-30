@@ -39,11 +39,17 @@
 
 		</fieldset>
 
-		<label>Description of Tour site</label>
+		<label>Description of Tour Site</label>
 		<textarea placeholder="Description" ng-model="formData.description"></textarea>
 		
-		<label>Technical Description of Tour site</label>
+		<label>Technical Description of Tour Site</label>
 		<textarea placeholder="Technical Description" ng-model="formData.technical"></textarea>
+		
+		<label>Attached Quiz</label>
+		<select ng-model="quizID">
+			<option value="">Select a Quiz</option>
+			<option ng-repeat="quiz in quizData" value={{quiz._id}}>{{quiz.idno}}:{{quiz.name}}</option>
+		</select>
 		
 		<div ng-repeat="pic in formData.picData">
 			<label>Image</label>
@@ -53,10 +59,10 @@
 			<label>Image Technical Description</label>
 			<textarea placeholder="Image Technical Description" ng-model="pic.technical"></textarea>
 		</div>
-		<input class="button small" type="button" value="Add New Image" ng-click="addImg()">
+		<input type="button" value="Add New Image" ng-click="addImg()">
 	</div>
 	<br></br>
-	<input class="button small" type="button" value="Submit" id="submitTourSite" ng-click="submitForm()">
+	<input type="button" value="Submit" id="submitTourSite" ng-click="submitForm()">
 	<br></br>
 </div>
 	

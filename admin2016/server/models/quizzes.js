@@ -3,15 +3,15 @@ var Schema = mongoose.Schema;
 
 
 var QuizSchema = new Schema({
-    idnum: Number,
+    idno: Number,
 	name: String,
-    questions: 
-        {
+    questions:
+        [{
             question: String,
 			options: [String],
 			answer: Number,
             hint : String
-        }
+        }]
 });
 
 
