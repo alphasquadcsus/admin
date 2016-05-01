@@ -11,13 +11,4 @@ router.get('/view', function(req, res){
 	});
 });
 
-router.delete('/remove/:userID',function(req, res){ //Remove user by user's ID
-	var uID= req.params.userID;
-	User.remove({_id:uID},function(err,user){
-		if(err)
-			res.send(err)
-		res.end();
-	});
-});
-
 module.exports = router;
