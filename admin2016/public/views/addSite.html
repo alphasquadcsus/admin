@@ -10,6 +10,8 @@
 		<li><span class="show-for-sr"></span><a href="/site/view">View Sites</a></li>
 		<li class="active"><a href="/site/add">Add a Tour Site</a></li>
 	</ul>	
+	
+	{{msg}}
 	<div>
 		<label>Name</label>
 		<input type="text" placeholder="Tour Site Name" ng-model="formData.title">
@@ -43,12 +45,14 @@
 		<label>Attached Quiz</label>
 		<select ng-model="quizID">
 			<option value="">Select a Quiz</option>
-			<option ng-repeat="quiz in quizData" value={{quiz._id}}>{{quiz.idno}}:{{quiz.name}}</option>
+			<option ng-repeat="quiz in quizData" value={{quiz._id}}>{{quiz.name}}</option>
 		</select>
 		
 		<div ng-repeat="pic in formData.picData">
 			<label>Image</label>
-			<input type="file" file-model="pic.file">
+			<input type="checkbox" ng-model="pic.uploadOrUrl"><label>Check to input an image URL instead of uploading an image locally.</label>
+			<input type="file" file-model="pic.file" ng-hide="pic.uploadOrUrl">
+			<input type="text" placeholder="Enter Image URL" ng-model="pic.fileUrl" ng-show="pic.uploadOrUrl">
 			<label>Image Description</label>
 			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
 			<label>Image Technical Description</label>

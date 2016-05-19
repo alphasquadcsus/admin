@@ -134,6 +134,7 @@ angular.module('adminCtrl',[])
 		$scope.formData = {};
 		$scope.formData.picData = [];
 		$scope.filenames = [];
+				
 		//Load quizzes from database into $scope.quizData
 		Quiz.get()
 			.success(function(data){
@@ -143,20 +144,25 @@ angular.module('adminCtrl',[])
 		$scope.addImg = function(){
 			$scope.formData.picData.push({});		
 		}
-		
+			
 		//Submit form function
 		$scope.submitForm = function() {
 			var data = $scope.formData;
 			var types = [];
 			var file, fd, filename;
 			var picArr = [];
+
 			//Upload images to img folder on server and push text details: filename & descriptions to array
 			for(var i = 0; i < data.picData.length; i++){
-				file = $scope.formData.picData[i].file;
-				fd = new FormData();
-				fd.append('file', file);
-				Site.upload(fd);
-				filename = "img/"+$scope.filenames[i];
+				if(data.picData[i].uploadOrUrl){
+					filename = data.picData[i].fileUrl;
+				}else{
+					file = $scope.formData.picData[i].file;
+					fd = new FormData();
+					fd.append('file', file);
+					Site.upload(fd);
+					filename = "/img/"+$scope.filenames[i];
+				}
 				picArr.push({
 						src: filename,
 						description: data.picData[i].description,
@@ -168,18 +174,23 @@ angular.module('adminCtrl',[])
 			//Each of the tour type checkboxes converts to array of types to be sent to express
 			if(data.type.concrete){
 				types.push("concrete");
+				data.icon = "img/concreteicon.png";
 			}
 			if(data.type.steel){
 				types.push("steel");
+				data.icon = "img/steelicon.png";
 			}
 			if(data.type.timber){
 				types.push("timber");
+				data.icon = "img/timbericon.png";
 			}
 			if(data.type.connections){
 				types.push("connections");
+				data.icon = "img/connectionsicon.png";
 			}
 			if(data.type.lateral){
 				types.push("lateral");
+				data.icon = "img/lateralicon.png";
 			}
 			data.type = types;
 			//If no latitude or longitude provided, defaults to center of SacState 
@@ -196,6 +207,7 @@ angular.module('adminCtrl',[])
 			angular.element("input[type='file']").val(null);
 			$scope.formData = {};
 			$scope.quizID = {};
+			
 		}
 		
 	}])

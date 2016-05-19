@@ -32,6 +32,7 @@ router.post('/add',function(req, res){ //Create site
 	site.tourtype=req.body.type;
 	site.lat=req.body.lat;
 	site.lon=req.body.lon;
+	site.icon=req.body.icon;
 	site.rating=0;
 	site.description=req.body.description;
 	site.technicaldescription=req.body.technical;
