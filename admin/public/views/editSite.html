@@ -66,7 +66,9 @@
 		<!-- New Images -->
 		<div ng-repeat="pic in formData.newPicData">
 			<label>Image</label>
-			<input type="file" file-model="pic.file">
+			<input type="checkbox" ng-model="pic.uploadOrUrl"><label>Check to input an image URL instead of uploading an image locally.</label>
+			<input type="file" file-model="pic.file" ng-hide="pic.uploadOrUrl">
+			<input type="text" placeholder="Enter Image URL" ng-model="pic.fileUrl" ng-show="pic.uploadOrUrl">
 			<label>Image Description</label>
 			<textarea placeholder="Image Description" ng-model="pic.description"></textarea>
 			<label>Image Technical Description</label>

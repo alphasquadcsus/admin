@@ -161,7 +161,7 @@ angular.module('adminCtrl',[])
 					fd = new FormData();
 					fd.append('file', file);
 					Site.upload(fd);
-					filename = "/img/"+$scope.filenames[i];
+					filename = "img/"+$scope.filenames[i];
 				}
 				picArr.push({
 						src: filename,
@@ -277,11 +277,15 @@ angular.module('adminCtrl',[])
 			}
 			//Loop uploads new images and appends new image data to picArr array
 			for(var i = 0; i < scopeData.newPicData.length; i++){
-				file = scopeData.newPicData[i].file;
-				fd = new FormData();
-				fd.append('file', file);
-				Site.upload(fd);
-				filename = "img/"+$scope.filenames[i];
+				if(data.newPicData[i].uploadOrUrl){
+					filename = data.newPicData[i].fileUrl;
+				}else{
+					file = scopeData.newPicData[i].file;
+					fd = new FormData();
+					fd.append('file', file);
+					Site.upload(fd);
+					filename = "img/"+$scope.filenames[i];
+				}
 				picArr.push({
 						src: filename,
 						description: scopeData.newPicData[i].description,
